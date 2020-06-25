@@ -15,10 +15,19 @@
     "extends": [
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
+        "plugin:testing-library/react",
+        "plugin:jest-dom/recommended",
         "prettier/@typescript-eslint",
         "plugin:prettier/recommended"
     ],
+    "plugins": [
+        "testing-library",
+        "jest-dom"
+    ],
     "rules": {
-        "@typescript-eslint/explicit-module-boundary-types": 0
+        "@typescript-eslint/explicit-module-boundary-types": 0,
+        "testing-library/await-async-query": "error",
+        "testing-library/no-await-sync-query": "error",
+        "testing-library/no-debug": "warn"
     }
 }
