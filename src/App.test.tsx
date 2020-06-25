@@ -20,5 +20,5 @@ test('full app rendering/navigating', async () => {
   expect(await findByText('Spain images gallery')).toBeVisible()
 
   fireEvent.click(getByText(/Home/i))
-  expect(await findByText('Welcome to Home')).toBeVisible()
+  expect(await findByText('Welcome to Home')).toBeInTheDocument()
 })

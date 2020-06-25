@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@loadable/component": "^5.12.0",
+    "@material-ui/core": "^4.10.2",
+    "@material-ui/icons": "^4.9.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0"
@@ -31,27 +33,27 @@
     ]
   },
   "devDependencies": {
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "@types/loadable__component": "^5.10.0",
-    "@types/react-router-dom": "^5.1.5",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/loadable__component": "^5.10.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-router-dom": "^5.1.5",
     "@types/testing-library__jest-dom": "^5.9.1",
     "@types/testing-library__react": "^10.2.0",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
     "@typescript-eslint/parser": "^3.4.0",
-    "react-scripts": "3.4.1",
-    "typescript": "~3.7.2",
     "eslint": "^7.3.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-jest-dom": "^3.0.1",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-testing-library": "^3.3.1",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "react-scripts": "3.4.1",
+    "typescript": "~3.7.2"
   }
 }
