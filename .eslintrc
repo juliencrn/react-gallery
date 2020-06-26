@@ -22,13 +22,16 @@
     ],
     "plugins": [
         "testing-library",
-        "jest-dom"
+        "jest-dom",
+        "react-hooks"
     ],
     "rules": {
         "@typescript-eslint/explicit-module-boundary-types": 0,
         "testing-library/await-async-query": "error",
         "testing-library/no-await-sync-query": "error",
         "testing-library/no-debug": "warn",
-        "react/prop-types": "off"
+        "react/prop-types": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
     }
 }

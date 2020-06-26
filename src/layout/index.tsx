@@ -10,8 +10,8 @@ import {
 } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
-const Layout: FC = ({ children }) => (
-  <>
+function Menu() {
+  return (
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6">
@@ -28,6 +28,12 @@ const Layout: FC = ({ children }) => (
         </Button>
       </Toolbar>
     </AppBar>
+  )
+}
+
+const Layout: FC = ({ children }) => (
+  <>
+    <Menu />
     <Container maxWidth="md">
       <>{children}</>
     </Container>
