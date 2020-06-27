@@ -1,0 +1,24 @@
+{{! prettier-ignore }}
+import React from 'react'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Typography } from '@material-ui/core'
+
+const useStyles = makeStyles((theme: Theme) => ({
+root: {},
+}))
+
+export interface {{pascalCase name}}Props {
+title: string
+}
+
+function {{pascalCase name}}({ title }: {{pascalCase name}}Props) {
+const classes = useStyles()
+
+return (
+<Typography className={classes.root} variant="h2" component="h1">
+    {title}
+</Typography>
+)
+}
+
+export default {{pascalCase name}}

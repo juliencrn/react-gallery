@@ -1,11 +1,12 @@
 import React from 'react'
 
 import Layout from '../layout'
+import Hero from '../components/Hero'
 
 function Home() {
   return (
     <Layout>
-      <h1>Welcome to Home</h1>
+      <Hero title="Welcome to Home" />
     </Layout>
   )
 }

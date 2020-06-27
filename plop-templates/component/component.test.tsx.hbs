@@ -1,0 +1,14 @@
+import React from 'react'
+import { render } from '@testing-library/react'
+
+import {{pascalCase name}} from '../{{pascalCase name}}'
+
+describe('{{pascalCase name}}', () => {
+test('renders {{pascalCase name}} component with props', () => {
+const title = "My super title"
+const { getByText } = render(
+<{{pascalCase name}} title={title} />)
+
+expect(getByText(title)).toBeInTheDocument()
+})
+})

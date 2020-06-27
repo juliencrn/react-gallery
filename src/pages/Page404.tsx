@@ -1,10 +1,11 @@
 import React from 'react'
 import Layout from '../layout'
+import Hero from '../components/Hero'
 
 function Page404() {
   return (
     <Layout>
-      <h1>404: page not found</h1>
+      <Hero title="404: page not found" />
     </Layout>
   )
 }

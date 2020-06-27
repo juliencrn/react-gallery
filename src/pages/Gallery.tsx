@@ -5,6 +5,7 @@ import Layout from '../layout'
 import ImageCard from '../components/ImageCard'
 import useFetchImages from '../hooks/useFetchImages'
 import { Image } from '../interfaces'
+import Hero from '../components/Hero'
 
 export interface ImagesListProps {
   images: Image[]
@@ -35,7 +36,7 @@ function Gallery() {
 
   return (
     <Layout>
-      <h1>Spain images gallery</h1>
+      <Hero title="Spain images gallery" />
 
       <ImagesList {...results} />
     </Layout>
