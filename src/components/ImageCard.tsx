@@ -1,16 +1,18 @@
 import React from 'react'
 import Image from './Image'
-import Title from './Title'
-import Author from './Author'
+import ImageTitle from './ImageTitle'
+import ImageAuthor from './ImageAuthor'
 
 import { Image as IImage } from '../interfaces'
+
+const isLoading = true
 
 function ImageCard({ title, user }: IImage) {
   return (
     <>
       <Image />
-      <Title title={title} />
-      <Author user={user} />
+      <ImageTitle title={title} isLoading={isLoading} />
+      <ImageAuthor {...user} isLoading={isLoading} />
     </>
   )
 }
