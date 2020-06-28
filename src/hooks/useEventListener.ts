@@ -25,7 +25,9 @@ function useEventListener<T extends HTMLElement = HTMLDivElement>(
 
       // Create event listener that calls handler function stored in ref
       const eventListener = (event: Event) => {
-        savedHandler.current && savedHandler.current(event)
+        if (!!savedHandler.current) {
+          savedHandler.current(event)
+        }
       }
 
       targetElement.addEventListener(eventName, eventListener)
@@ -35,7 +37,8 @@ function useEventListener<T extends HTMLElement = HTMLDivElement>(
         targetElement.removeEventListener(eventName, eventListener)
       }
     },
-    [eventName, element], // Re-run if eventName or element changes
+    // Re-run if eventName or element changes
+    [eventName, element],
   )
 }
 
