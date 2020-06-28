@@ -1,6 +1,5 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import { axe } from 'jest-axe'
 
 import {{pascalCase name}} from '../{{pascalCase name}}'
 
@@ -11,13 +10,5 @@ const { getByText } = render(
 <{{pascalCase name}} title={title} />)
 
 expect(getByText(title)).toBeInTheDocument()
-})
-
-test('has no accessibility violations', async () => {
-const { container } = render(
-<{{pascalCase name}} title={title} />)
-const results = await axe(container)
-
-expect(results).toHaveNoViolations()
 })
 })
