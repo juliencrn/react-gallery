@@ -34,7 +34,7 @@ function Menu() {
 const Layout: FC = ({ children }) => (
   <>
     <Menu />
-    <Container maxWidth="md">
+    <Container maxWidth="lg">
       <>{children}</>
     </Container>
   </>

@@ -20,10 +20,11 @@ function ImageAuthor({ name, link, isLoading }: ImageAuthorProps) {
       {isLoading ? (
         <Skeleton width="40%" data-testid="image-author-skeleton" />
       ) : (
-        <Typography>
-          <Link href={link || ''} target="_blank">{`By ${
-            name || 'anonym'
-          }`}</Link>
+        <Typography variant="body2">
+          By{` `}
+          <Link href={link || ''} target="_blank">
+            {name || 'anonym'}
+          </Link>
         </Typography>
       )}
     </div>

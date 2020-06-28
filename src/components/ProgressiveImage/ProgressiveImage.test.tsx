@@ -3,26 +3,39 @@ import { render } from '@testing-library/react'
 import { axe } from 'jest-axe'
 
 import ProgressiveImage from '../ProgressiveImage'
+import { ProgressiveImageProps } from './ProgressiveImage'
 
 describe('ProgressiveImage', () => {
-  const url = 'https://via.placeholder.com/500'
+  const image: ProgressiveImageProps = {
+    url: 'https://via.placeholder.com/1500',
+    thumbUrl: 'https://via.placeholder.com/150',
+    alt: 'text alt',
+  }
+
   test('when is loading', () => {
-    const { queryByTestId } = render(<ProgressiveImage url={url} isLoading />)
+    const { queryByTestId } = render(<ProgressiveImage {...image} isLoading />)
 
     expect(queryByTestId('image')).not.toBeInTheDocument()
+    expect(queryByTestId('thumb-image')).not.toBeInTheDocument()
     expect(queryByTestId('image-skeleton')).toBeInTheDocument()
   })
 
   test('when is visible', () => {
-    const { queryByTestId } = render(<ProgressiveImage url={url} />)
+    const { queryByTestId } = render(<ProgressiveImage {...image} />)
 
-    expect(queryByTestId('image')).toBeInTheDocument()
-    expect(queryByTestId('image').closest('img')).toHaveProperty('src', url)
+    expect(queryByTestId('image').closest('img')).toHaveProperty(
+      'src',
+      image.url,
+    )
+    expect(queryByTestId('thumb-image').closest('img')).toHaveProperty(
+      'src',
+      image.thumbUrl,
+    )
     expect(queryByTestId('image-skeleton')).not.toBeInTheDocument()
   })
 
   test('has no accessibility violations', async () => {
-    const { container } = render(<ProgressiveImage url={url} />)
+    const { container } = render(<ProgressiveImage {...image} />)
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()

@@ -2,10 +2,14 @@ import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
+import { truncate } from '../../utils'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(1),
+  },
+  title: {
+    fontWeight: 'bold',
   },
 }))
 
@@ -25,8 +29,8 @@ function ImageTitle({ title, isLoading }: ImageTitleProps) {
           <Skeleton width="60%" />
         </>
       ) : (
-        <Typography variant="h6" component="h3">
-          {title}
+        <Typography variant="body1" className={classes.title} component="h3">
+          {truncate(title)}
         </Typography>
       )}
     </div>
