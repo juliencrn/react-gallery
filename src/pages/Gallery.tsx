@@ -7,7 +7,6 @@ import ImageList from '../components/ImageList'
 
 function Gallery() {
   const results = useFetchImages()
-
   return (
     <Layout>
       <Hero title="Spain images gallery" />

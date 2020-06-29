@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Skeleton } from '@material-ui/lab'
 import useElementSize from '../../hooks/useElementSize'
+import useIntersectionObserver from '../../hooks/useIntersectionObserver'
 
 type StylesProps = { height: number }
 
@@ -35,18 +36,18 @@ function ProgressiveImage({
   isLoading,
 }: ProgressiveImageProps) {
   const onImageLoad = () => {
-    // Do stuff...
+    // console.log('full image loaded!')
   }
 
   const rootRef = useRef<HTMLDivElement>(null)
-
+  const { isIntersecting } = useIntersectionObserver(rootRef)
   const { width: height } = useElementSize(rootRef)
-
+  const showImageSkeleton: boolean = isLoading || !isIntersecting
   const classes = useStyles({ height })
 
   return (
     <div ref={rootRef} className={classes.root}>
-      {isLoading ? (
+      {showImageSkeleton ? (
         <Skeleton
           variant="rect"
           width="100%"
@@ -72,6 +73,7 @@ function ProgressiveImage({
           />
         </>
       )}
+      <div style={{ paddingTop: 50 }} />
     </div>
   )
 }

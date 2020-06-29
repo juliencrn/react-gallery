@@ -1,4 +1,4 @@
-import { RefObject, useState, useEffect } from 'react'
+import { RefObject, useState, useEffect, useCallback } from 'react'
 import useEventListener from './useEventListener'
 
 interface Size {
@@ -14,7 +14,8 @@ function useElementSize<T extends HTMLElement = HTMLDivElement>(
     height: 0,
   })
 
-  const updateSize = () => {
+  // Prevent too many rendering
+  const updateSize = useCallback(() => {
     const node = elementRef?.current
     if (node) {
       setSize({
@@ -22,7 +23,7 @@ function useElementSize<T extends HTMLElement = HTMLDivElement>(
         height: node.offsetHeight || 0,
       })
     }
-  }
+  }, [elementRef])
 
   // initial size
   useEffect(() => {

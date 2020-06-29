@@ -1,24 +1,18 @@
 import React from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Box } from '@material-ui/core'
 
 import ProgressiveImage from '../ProgressiveImage'
 import ImageTitle from '../ImageTitle'
 import ImageAuthor from '../ImageAuthor'
 import { Image } from '../../interfaces'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    marginBottom: theme.spacing(2),
-  },
-}))
-
 const isLoading = false
 
 function ImageCard({ id, title, user, imageUrls, alt_description }: Image) {
-  const classes = useStyles()
   const { thumb, full } = imageUrls
+
   return (
-    <article id={`image-${id}`} className={classes.root}>
+    <Box component="article" id={`image-${id}`} mb={2}>
       <ProgressiveImage
         url={full}
         thumbUrl={thumb}
@@ -27,7 +21,7 @@ function ImageCard({ id, title, user, imageUrls, alt_description }: Image) {
       />
       <ImageTitle title={title} isLoading={isLoading} />
       <ImageAuthor {...user} isLoading={isLoading} />
-    </article>
+    </Box>
   )
 }
 
