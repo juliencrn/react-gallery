@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Skeleton } from '@material-ui/lab'
+import useElementSize from '../../hooks/useElementSize'
 
 type StylesProps = { height: number }
 
@@ -37,36 +38,9 @@ function ProgressiveImage({
     // Do stuff...
   }
 
-  // todo : export as hooks
-  // => https://usehooks.com/useEventListener/
-  // +++
-  // => useElementSize(element) => ({ width, height })
-  // +++
-  // Tester les hooks
-  const [height, setHeight] = useState<number>(0)
   const rootRef = useRef<HTMLDivElement>(null)
 
-  const updateHeight = () => {
-    const node = rootRef?.current
-    if (node) {
-      setHeight(node.offsetWidth)
-    }
-  }
-
-  useEffect(() => {
-    updateHeight()
-  }, [rootRef])
-
-  // onResize
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-
-    window.addEventListener('resize', updateHeight)
-
-    return () => {
-      window.removeEventListener('resize', updateHeight)
-    }
-  }, [])
+  const { width: height } = useElementSize(rootRef)
 
   const classes = useStyles({ height })
 
