@@ -1,6 +1,7 @@
 export interface ImageUrls {
   full: string
   thumb: string
+  regular: string
 }
 
 export interface User {

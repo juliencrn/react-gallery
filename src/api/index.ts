@@ -14,6 +14,7 @@ function flattenData(): Image[] {
       },
       imageUrls: {
         full: urls.full,
+        regular: urls.regular,
         thumb: urls.thumb,
       },
       alt_description: alt_description || '',

@@ -18,6 +18,8 @@ const randomImage: Image = {
   imageUrls: {
     full:
       'https://images.unsplash.com/photo-1509840841025-9088ba78a826?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NDEyOH0',
+    regular:
+      'https://images.unsplash.com/photo-1509840841025-9088ba78a826?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjE0NDEyOH0',
     thumb:
       'https://images.unsplash.com/photo-1509840841025-9088ba78a826?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE0NDEyOH0',
   },

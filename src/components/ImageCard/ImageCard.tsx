@@ -1,27 +1,36 @@
 import React from 'react'
-import { Box } from '@material-ui/core'
+
+import Typography from '@material-ui/core/Typography'
+import Link from '@material-ui/core/Link'
 
 import ProgressiveImage from '../ProgressiveImage'
-import ImageTitle from '../ImageTitle'
-import ImageAuthor from '../ImageAuthor'
 import { Image } from '../../interfaces'
-
-const isLoading = false
+import { truncate } from '../../utils'
+import useIntersectionObserver from '../../hooks/useIntersectionObserver'
 
 function ImageCard({ id, title, user, imageUrls, alt_description }: Image) {
-  const { thumb, full } = imageUrls
+  const [ref, entry] = useIntersectionObserver({ onAppearOnly: true })
 
   return (
-    <Box component="article" id={`image-${id}`} mb={2}>
+    <article ref={ref} id={`image-${id}`}>
       <ProgressiveImage
-        url={full}
-        thumbUrl={thumb}
-        isLoading={isLoading}
+        url={imageUrls.regular}
+        thumbUrl={imageUrls.thumb}
         alt={alt_description}
+        isVisible={Boolean(entry?.isVisible)}
       />
-      <ImageTitle title={title} isLoading={isLoading} />
-      <ImageAuthor {...user} isLoading={isLoading} />
-    </Box>
+
+      <Typography variant="body1" style={{ fontWeight: 'bold' }} component="h3">
+        {truncate(title)}
+      </Typography>
+
+      <Typography variant="body2">
+        By{` `}
+        <Link href={user?.link || ''} target="_blank">
+          {user?.name || 'anonym'}
+        </Link>
+      </Typography>
+    </article>
   )
 }
 

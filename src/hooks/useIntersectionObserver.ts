@@ -1,47 +1,59 @@
-import { useEffect, RefObject, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
-export type IntersectionStatus = {
-  isIntersecting: boolean
+/**
+ * @credits https://medium.com/the-non-traditional-developer/how-to-use-an-intersectionobserver-in-a-react-hook-9fb061ac6cb5
+ */
+
+interface ExtendedEntry extends IntersectionObserverEntry {
+  isVisible: boolean
 }
 
-const defaultOptions: IntersectionObserverInit = {
-  rootMargin: '0px',
-  threshold: 0.1,
+interface Args extends IntersectionObserverInit {
+  onAppearOnly?: boolean
 }
 
-function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>(
-  element: RefObject<T>,
-  options: IntersectionObserverInit = defaultOptions,
-): IntersectionStatus {
-  const [isIntersecting, setIsIntersecting] = useState<boolean>(false)
-  const target = element?.current
+type Return<T> = [(node: T) => void, ExtendedEntry?]
+
+function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>({
+  threshold = 0.1,
+  root = null,
+  rootMargin = '0%',
+  onAppearOnly = false,
+}: Args): Return<T> {
+  const [entry, setEntry] = useState<ExtendedEntry>()
+  const [node, setNode] = useState<T>()
+  const observer = useRef<IntersectionObserver | null>(null)
+
+  const noUpdate = entry?.isVisible && onAppearOnly
 
   useEffect(() => {
-    if (!target) {
-      return
-    }
+    if (!window?.IntersectionObserver || noUpdate) return
 
-    const onIntersect = ([entry]: IntersectionObserverEntry[]) => {
-      setIsIntersecting(entry.isIntersecting)
+    if (observer.current) observer.current.disconnect()
 
-      if (entry.isIntersecting) {
-        observer.unobserve(target)
-      }
-    }
-
-    const observer: IntersectionObserver = new IntersectionObserver(
-      onIntersect,
-      options,
+    observer.current = new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]) => {
+        const isVisible = entries[0].intersectionRatio > 0
+        setEntry({ ...entries[0], isVisible })
+      },
+      {
+        threshold,
+        root,
+        rootMargin,
+      },
     )
 
-    observer.observe(target)
+    // Ensure the rest of useEffect use the same observer
+    const { current: currentObserver } = observer
+
+    if (node) currentObserver.observe(node)
 
     return () => {
-      observer.unobserve(target)
+      currentObserver.disconnect()
     }
-  }, [target, options])
+  }, [node, threshold, root, rootMargin, noUpdate])
 
-  return { isIntersecting }
+  return [setNode, entry]
 }
 
 export default useIntersectionObserver
