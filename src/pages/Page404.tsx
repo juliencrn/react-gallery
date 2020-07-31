@@ -1,5 +1,6 @@
 import React from 'react'
-import Layout from '../layout'
+
+import Layout from '../components/Layout'
 import Hero from '../components/Hero'
 
 function Page404() {

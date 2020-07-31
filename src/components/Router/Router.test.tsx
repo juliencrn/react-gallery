@@ -14,10 +14,8 @@ describe('Router', () => {
       </Router>,
     )
 
-    expect(await findByText('Welcome to Home')).toBeVisible()
-
     fireEvent.click(getByText(/Gallery/i))
-    expect(await findByText('Spain images gallery')).toBeVisible()
+    expect(await findByText('Images gallery')).toBeVisible()
 
     fireEvent.click(getByText(/Home/i))
     expect(await findByText('Welcome to Home')).toBeInTheDocument()

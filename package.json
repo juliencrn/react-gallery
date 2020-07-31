@@ -7,9 +7,11 @@
     "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
+    "@n8tb1t/use-scroll-position": "^1.0.43",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "react-scroll": "^1.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,6 +49,7 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^5.1.5",
+    "@types/react-scroll": "^1.5.5",
     "@types/testing-library__jest-dom": "^5.9.1",
     "@types/testing-library__react": "^10.2.0",
     "@typescript-eslint/eslint-plugin": "^3.4.0",

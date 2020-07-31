@@ -1,24 +1,44 @@
-import React from 'react'
-import { Typography } from '@material-ui/core'
+import React, { FC } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    margin: theme.spacing(10, 0),
+    margin: theme.spacing(16, 0, 12),
     textAlign: 'center',
+  },
+  title: {
+    marginBottom: theme.spacing(4),
+  },
+  subtitle: {
+    color: theme.palette.text.secondary,
+    fontWeight: 'lighter',
+    marginBottom: theme.spacing(4),
   },
 }))
 
 export interface HeroProps {
   title: string
+  subtitle?: string
 }
 
-function Hero({ title }: HeroProps) {
+const Hero: FC<HeroProps> = ({ title, subtitle, children }) => {
   const classes = useStyles()
   return (
-    <Typography className={classes.root} variant="h2" component="h1">
-      {title}
-    </Typography>
+    <div className={classes.root}>
+      <Container maxWidth="md">
+        <Typography className={classes.title} variant="h1" component="h1">
+          {title}
+        </Typography>
+        {subtitle && (
+          <Typography className={classes.subtitle} variant="h4" component="h2">
+            {subtitle}
+          </Typography>
+        )}
+        {children}
+      </Container>
+    </div>
   )
 }
 
