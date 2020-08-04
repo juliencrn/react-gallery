@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Grid from '@material-ui/core/Grid'
 import Chip from '@material-ui/core/Chip'
@@ -8,8 +8,8 @@ import Layout from '../components/Layout'
 import Hero from '../components/Hero'
 import ImageCard from '../components/ImageCard'
 import useFetch from '../hooks/useFetch'
-
 import { PexelsImage } from '../interfaces'
+import SearchForm from '../components/SearchForm'
 
 const hashtags = [
   'Cache',
@@ -34,12 +34,19 @@ interface PexelsResponse {
 }
 
 function Gallery() {
-  const url = `https://api.pexels.com/v1/search?query=spain&per_page=9&page=5`
+  const [query, setQuery] = useState('')
+  const url = `https://api.pexels.com/v1/search?query=${
+    query || 'spain'
+  }&per_page=9&page=5`
   const headers = { Authorization: process.env.REACT_APP_PEXELS_API_KEY }
 
   const { status, data } = useFetch<PexelsResponse>(url, { headers })
 
   const isLoading = status !== 'fetched' && typeof data === 'undefined'
+
+  const handleSearch = (search: string) => {
+    setQuery(search)
+  }
 
   return (
     <Layout>
@@ -57,6 +64,7 @@ function Gallery() {
               style={{ margin: '4px' }}
             />
           ))}
+          <SearchForm onSearch={handleSearch} />
         </Container>
       </Hero>
 

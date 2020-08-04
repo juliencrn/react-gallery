@@ -11,6 +11,7 @@
     "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^6.3.0",
     "react-router-dom": "^5.2.0",
     "react-scroll": "^1.8.0"
   },
@@ -63,6 +64,7 @@
     "eslint-plugin-react-hooks": "^4.0.4",
     "eslint-plugin-testing-library": "^3.3.1",
     "jest-axe": "^3.4.0",
+    "mutationobserver-shim": "^0.3.7",
     "plop": "^2.7.1",
     "prettier": "^2.0.5",
     "react-scripts": "3.4.1",
