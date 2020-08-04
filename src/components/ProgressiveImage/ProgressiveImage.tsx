@@ -1,18 +1,20 @@
 import React, { CSSProperties } from 'react'
 
+import Skeleton from '@material-ui/lab/Skeleton'
+
 import useImageOnLoad from '../../hooks/useImageOnLoad'
 import Square from '../Square'
 
 export interface ProgressiveImageProps {
-  url: string
-  thumbUrl: string
+  url?: string
+  thumbUrl?: string
   alt?: string
   isVisible: boolean
 }
 
 function ProgressiveImage({
-  url,
-  thumbUrl,
+  url = '',
+  thumbUrl = '',
   alt = '',
   isVisible,
 }: ProgressiveImageProps) {
@@ -26,7 +28,7 @@ function ProgressiveImage({
   return (
     <Square>
       {size =>
-        isVisible && (
+        isVisible ? (
           <>
             <img
               style={{ ...thumbStyle, height: size, ...imageStyle }}
@@ -44,6 +46,13 @@ function ProgressiveImage({
               width="100%"
             />
           </>
+        ) : (
+          <Skeleton
+            variant="rect"
+            width="100%"
+            height={size}
+            data-testid="image-skeleton"
+          />
         )
       }
     </Square>

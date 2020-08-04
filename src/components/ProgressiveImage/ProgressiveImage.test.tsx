@@ -13,13 +13,15 @@ describe('ProgressiveImage', () => {
     isVisible: true,
   }
 
-  // test('when is loading', () => {
-  //   const { queryByTestId } = render(<ProgressiveImage {...image} isLoading />)
+  test('when is loading', () => {
+    const { queryByTestId } = render(
+      <ProgressiveImage {...image} isVisible={false} />,
+    )
 
-  //   expect(queryByTestId('image')).not.toBeInTheDocument()
-  //   expect(queryByTestId('thumb-image')).not.toBeInTheDocument()
-  //   expect(queryByTestId('image-skeleton')).toBeInTheDocument()
-  // })
+    expect(queryByTestId('image')).not.toBeInTheDocument()
+    expect(queryByTestId('thumb-image')).not.toBeInTheDocument()
+    expect(queryByTestId('image-skeleton')).toBeInTheDocument()
+  })
 
   test('when is visible', async () => {
     const { queryByTestId } = render(<ProgressiveImage {...image} />)
