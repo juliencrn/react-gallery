@@ -23,8 +23,6 @@ function useFetch<T = unknown>(
 ): State<T> {
   const cache = useRef<Cache<T>>({})
 
-  console.log('Render useFetch')
-
   const initialState: State<T> = {
     status: 'init',
     error: undefined,
@@ -52,7 +50,6 @@ function useFetch<T = unknown>(
     let cancelRequest = false
 
     const fetchData = async () => {
-      console.log('Fetch')
       dispatch({ type: 'request' })
 
       if (cache.current[url]) {

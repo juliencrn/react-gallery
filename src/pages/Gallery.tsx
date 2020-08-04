@@ -11,7 +11,6 @@ import SkeletonCard from '../components/ImageCard/SkeletonCard'
 import useFetch from '../hooks/useFetch'
 
 import { PexelsImage } from '../interfaces'
-import { AxiosRequestConfig } from 'axios'
 
 const hashtags = [
   'Cache',
