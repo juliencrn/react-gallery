@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
 
-import Grid from '@material-ui/core/Grid'
 import Chip from '@material-ui/core/Chip'
 import Container from '@material-ui/core/Container'
 
 import Layout from '../components/Layout'
 import Hero from '../components/Hero'
-import ImageCard from '../components/ImageCard'
-import useFetch from '../hooks/useFetch'
-import { PexelsImage } from '../interfaces'
 import SearchForm from '../components/SearchForm'
+import ImageList from '../components/ImageList'
 
 const hashtags = [
   'Cache',
@@ -24,25 +21,8 @@ const hashtags = [
   'Material-ui',
 ]
 
-interface PexelsResponse {
-  total_results: number
-  page: number
-  per_page: number
-  photos: PexelsImage[]
-  next_page: string
-  prev_page: string
-}
-
 function Gallery() {
   const [query, setQuery] = useState('')
-  const url = `https://api.pexels.com/v1/search?query=${
-    query || 'spain'
-  }&per_page=9&page=5`
-  const headers = { Authorization: process.env.REACT_APP_PEXELS_API_KEY }
-
-  const { status, data } = useFetch<PexelsResponse>(url, { headers })
-
-  const isLoading = status !== 'fetched' && typeof data === 'undefined'
 
   const handleSearch = (search: string) => {
     setQuery(search)
@@ -68,25 +48,7 @@ function Gallery() {
         </Container>
       </Hero>
 
-      <Container maxWidth="xl">
-        <Grid container spacing={4}>
-          {isLoading ? (
-            <>
-              {[1, 2, 3, 4, 5, 6].map(number => (
-                <Grid key={number} item xs={12} sm={6} md={4}>
-                  <ImageCard />
-                </Grid>
-              ))}
-            </>
-          ) : (
-            data?.photos.slice(0, 90).map(image => (
-              <Grid key={image.id} item xs={12} sm={6} md={4}>
-                <ImageCard data={image} />
-              </Grid>
-            ))
-          )}
-        </Grid>
-      </Container>
+      <ImageList query={query} />
     </Layout>
   )
 }
