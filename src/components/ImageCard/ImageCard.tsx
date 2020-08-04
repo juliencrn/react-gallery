@@ -6,18 +6,23 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 
 import ProgressiveImage from '../ProgressiveImage'
-import { Image } from '../../interfaces'
+import { PexelsImage } from '../../interfaces'
 import useIntersectionObserver from '../../hooks/useIntersectionObserver'
 
-function ImageCard({ id, user, imageUrls }: Image) {
+function ImageCard({
+  id,
+  photographer = 'anonym',
+  photographer_url,
+  src,
+}: PexelsImage) {
   const [ref, entry] = useIntersectionObserver({ onAppearOnly: true })
 
   return (
     <article ref={ref} id={`image-${id}`}>
       <Card>
         <ProgressiveImage
-          url={imageUrls.regular}
-          thumbUrl={imageUrls.thumb}
+          url={src.large}
+          thumbUrl={src.tiny}
           alt={`image-${id}`}
           isVisible={Boolean(entry?.isVisible)}
         />
@@ -26,8 +31,8 @@ function ImageCard({ id, user, imageUrls }: Image) {
           <Typography variant="body2" color="textSecondary" component="p">
             © Photo by
             {` `}
-            <Link href={user?.link || ''} target="_blank" color="primary">
-              {user?.name || 'anonym'}
+            <Link href={photographer_url} target="_blank" color="primary">
+              {photographer}
             </Link>
           </Typography>
         </CardContent>

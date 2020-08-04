@@ -5,26 +5,43 @@ import Chip from '@material-ui/core/Chip'
 import Container from '@material-ui/core/Container'
 
 import Layout from '../components/Layout'
-import useFetchImages from '../hooks/useFetchImages'
 import Hero from '../components/Hero'
 import ImageCard from '../components/ImageCard'
 import SkeletonCard from '../components/ImageCard/SkeletonCard'
+import useFetch from '../hooks/useFetch'
+
+import { PexelsImage } from '../interfaces'
+import { AxiosRequestConfig } from 'axios'
+
+const hashtags = [
+  'Cache',
+  'REST',
+  'Skeleton',
+  'React Hooks',
+  'IntersectionObserver',
+  'BlurredImages',
+  'Axios',
+  'Pexels',
+  'Typescript',
+  'Material-ui',
+]
+
+interface PexelsResponse {
+  total_results: number
+  page: number
+  per_page: number
+  photos: PexelsImage[]
+  next_page: string
+  prev_page: string
+}
 
 function Gallery() {
-  const { images, isLoading } = useFetchImages()
+  const url = `https://api.pexels.com/v1/search?query=spain&per_page=9&page=5`
+  const headers = { Authorization: process.env.REACT_APP_PEXELS_API_KEY }
 
-  const hashtags = [
-    'Cache',
-    'REST',
-    'Skeleton',
-    'React Hooks',
-    'IntersectionObserver',
-    'BlurredImages',
-    'Axios',
-    'Pexels',
-    'Typescript',
-    'Material-ui',
-  ]
+  const { status, data } = useFetch<PexelsResponse>(url, { headers })
+
+  const isLoading = status !== 'fetched' && typeof data === 'undefined'
 
   return (
     <Layout>
@@ -56,7 +73,7 @@ function Gallery() {
               ))}
             </>
           ) : (
-            images.slice(0, 90).map(image => (
+            data?.photos.slice(0, 90).map(image => (
               <Grid key={image.id} item xs={12} sm={6} md={4}>
                 <ImageCard {...image} />
               </Grid>
