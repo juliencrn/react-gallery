@@ -1,31 +1,17 @@
-import React, { useState } from 'react'
-
-import Chip from '@material-ui/core/Chip'
-import Container from '@material-ui/core/Container'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 
 import Layout from '../components/Layout'
 import Hero from '../components/Hero'
 import SearchForm from '../components/SearchForm'
 import ImageList from '../components/ImageList'
-
-const hashtags = [
-  'Cache',
-  'REST',
-  'Skeleton',
-  'React Hooks',
-  'IntersectionObserver',
-  'BlurredImages',
-  'Axios',
-  'Pexels',
-  'Typescript',
-  'Material-ui',
-]
+import { updateQuery } from '../redux/imageModule'
 
 function Gallery() {
-  const [query, setQuery] = useState('')
+  const dispatch = useDispatch()
 
   const handleSearch = (search: string) => {
-    setQuery(search)
+    dispatch(updateQuery(search))
   }
 
   return (
@@ -36,19 +22,10 @@ function Gallery() {
         application. We are therefore going to retrieve images from Pexels.com, and display them on the Gallery
         page.`}
       >
-        <Container maxWidth="sm">
-          {hashtags.map((text, i) => (
-            <Chip
-              key={`${text}-${i}`}
-              label={`#${text}`}
-              style={{ margin: '4px' }}
-            />
-          ))}
-          <SearchForm onSearch={handleSearch} />
-        </Container>
+        <SearchForm onSearch={handleSearch} />
       </Hero>
 
-      <ImageList query={query} />
+      <ImageList />
     </Layout>
   )
 }

@@ -36,8 +36,8 @@ const Hero: FC<HeroProps> = ({ title, subtitle, children }) => {
             {subtitle}
           </Typography>
         )}
-        {children}
       </Container>
+      {children && <Container maxWidth="sm">{children}</Container>}
     </div>
   )
 }

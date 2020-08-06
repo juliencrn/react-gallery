@@ -15,10 +15,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
-    width: 400,
+    width: 550,
     maxWidth: '100%',
     margin: 'auto',
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(8),
   },
   input: {
     marginLeft: theme.spacing(1),

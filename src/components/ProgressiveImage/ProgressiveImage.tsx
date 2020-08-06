@@ -25,10 +25,12 @@ function ProgressiveImage({
     position: 'absolute',
   }
 
+  const canLoad = isVisible && url && thumbUrl
+
   return (
     <Square>
       {size =>
-        isVisible ? (
+        canLoad ? (
           <>
             <img
               style={{ ...thumbStyle, height: size, ...imageStyle }}

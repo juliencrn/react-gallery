@@ -32,3 +32,12 @@ export interface PexelsImage {
   src: ImageSrc
   liked: boolean
 }
+
+export interface PexelsResponse {
+  total_results: number
+  page: number
+  per_page: number
+  photos: PexelsImage[]
+  next_page: string
+  prev_page: string
+}
