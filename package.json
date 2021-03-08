@@ -9,7 +9,7 @@
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@n8tb1t/use-scroll-position": "^1.0.43",
     "@reduxjs/toolkit": "^1.4.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.3.0",
